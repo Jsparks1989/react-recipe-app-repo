@@ -9,6 +9,8 @@ const App = () => {
 
   
   const [recipes, setRecipes] = useState([]);
+  const [search, setSearch] = useState('');
+
 
   useEffect(() =>{
     getRecipes();
@@ -16,23 +18,23 @@ const App = () => {
 
 
   const getRecipes = async () =>{
-    // Fetching the api data
     const response = await fetch(`https://api.edamam.com/search?q=chicken&app_id=${APP_ID}&app_key=${APP_KEY}`);
-    // Setting the fetched data to json format
     const data = await response.json();
-    // Setting the fetched data to state.recipes
     setRecipes(data.hits);
-    console.log('data hits');
-    console.log(data.hits);
-    console.log('data');
-    console.log(data);
+  }
+
+
+  const updateSearch = (e) =>{
+    setSearch(e.target.value)
   }
 
 
   return (
     <div className='App'>
       <form className="search-form">
-        <input className="search-bar" type='text'/>
+        {/* value is set to the default value for state.search (empty string). onChange is set to a function that will run when user 'changes' the input value.
+            updateSearch will run when user puts in input; updateSearch will setSearch to the input value. */}
+        <input className="search-bar" type='text' value={search} onChange={updateSearch} />
         <button className="search-button" type="submit">Search</button>
       </form>
       {recipes.map(recipe => (
