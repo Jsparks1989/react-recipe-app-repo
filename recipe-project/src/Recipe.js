@@ -5,6 +5,7 @@ const Recipe = ({title, calories, image, ingredients}) => {
     return(
         <div>
             <h1>{title}</h1>
+            <h3>Calories</h3>
             <p>{calories}</p>
             <img src={image} alt=""/>
         </div>

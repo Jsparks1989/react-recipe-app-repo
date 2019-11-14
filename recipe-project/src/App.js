@@ -13,13 +13,22 @@ const App = () => {
   //-- State -> "[state variable, function for setting the state variable] = useState(default value of the state variable)"
   const [recipes, setRecipes] = useState([]);
   const [search, setSearch] = useState('');
-  const [query, setQuery] = useState('chicken');
+  const [query, setQuery] = useState('banana');
 
 
+
+
+  /*
+  * useEffect(callback) -> useEffect param is a callback (a callback is a function that is to be 
+  * executed after another function has finished executing).
+  * In JS. functions are objects, so they can take other functions as params,
+  * Any function that is passed as an argument (param) is a callback function.
+  */
+ 
   //-- Everytime the page is re-rendered, the API call is made again.
   useEffect(() =>{
     getRecipes();
-  }, []);
+  }, [query]); /* The page is re-rendered ONLY when the query changes */
 
 
   //-- Making the API call for Edamam recipes and setting the fetched data from the call to json format.
@@ -30,7 +39,7 @@ const App = () => {
   }
 
   // Setting what the user typed in the search-bar (e.target.value) to the state.search. 
-  const updateSearch = (e) =>{
+  const updateSearch = e =>{
     setSearch(e.target.value);
     console.log(search);
   }
