@@ -16,19 +16,14 @@ const App = () => {
   const [query, setQuery] = useState('banana');
 
 
-
-
-  /*
-  * useEffect(callback) -> useEffect param is a callback (a callback is a function that is to be 
-  * executed after another function has finished executing).
-  * In JS. functions are objects, so they can take other functions as params,
-  * Any function that is passed as an argument (param) is a callback function.
-  */
- 
-  //-- Everytime the page is re-rendered, the API call is made again.
+  //-- useEffect runs the callback function everytime the page is re-rendered.
   useEffect(() =>{
+    // Everytime the page is re-rendered the API call is made again.
     getRecipes();
-  }, [query]); /* The page is re-rendered ONLY when the query changes */
+    /* The 2nd param (array) tells useEffect what will trigger the callback function 
+      to run (an empty array will trigger the callback only once).The page is re-rendered 
+      ONLY when 1. the page is first rendered AND 2. when the state.'query' changes */
+  }, [query]); 
 
 
   //-- Making the API call for Edamam recipes and setting the fetched data from the call to json format.
@@ -41,7 +36,7 @@ const App = () => {
   // Setting what the user typed in the search-bar (e.target.value) to the state.search. 
   const updateSearch = e =>{
     setSearch(e.target.value);
-    console.log(search);
+    // console.log(search);
   }
 
 
@@ -53,6 +48,20 @@ const App = () => {
     setQuery(search);
   }
 
+  /*
+   * BREAKDOWN OF WHAT IS CURRENTLY HAPPENING IN THE FORM 
+   * ====================================================
+   * 
+   * The input.search-bar value is set to state.search (an empty string) by default.  
+   * 
+   * When the user types in the search-bar, onChange is triggered and runs updateSearch
+   * updateSearch sets the new value in search-bar to state.search using setSearch.
+   * 
+   * When the form is submitted, getSearch is triggered and runs getSearch.
+   * getSearch stops the page from re-rendering from the submit event.
+   * state.search is set to state.query using setQuery.
+   * state.query is used in the API call when fetching data.
+   */
 
   return (
     <div className='App'>
