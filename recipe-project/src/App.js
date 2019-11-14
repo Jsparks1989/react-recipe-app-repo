@@ -13,16 +13,12 @@ const App = () => {
   //-- State -> "[state variable, function for setting the state variable] = useState(default value of the state variable)"
   const [recipes, setRecipes] = useState([]);
   const [search, setSearch] = useState('');
-  const [query, setQuery] = useState('banana');
+  const [query, setQuery] = useState('chicken');
 
 
   //-- useEffect runs the callback function everytime the page is re-rendered.
   useEffect(() =>{
-    // Everytime the page is re-rendered the API call is made again.
     getRecipes();
-    /* The 2nd param (array) tells useEffect what will trigger the callback function 
-      to run (an empty array will trigger the callback only once).The page is re-rendered 
-      ONLY when 1. the page is first rendered AND 2. when the state.'query' changes */
   }, [query]); 
 
 
@@ -42,26 +38,12 @@ const App = () => {
 
 // When search-form is submitted, run this function. Has an event passed in as a parameter.
   const getSearch = (e) => {
-    // This will stop the browser re-loading when form is submitted.
     e.preventDefault();
-    // Setting query to what is in the search-bar
     setQuery(search);
+    // Setting state.search back to an empty string after submitting the form.
+    setSearch('');
   }
 
-  /*
-   * BREAKDOWN OF WHAT IS CURRENTLY HAPPENING IN THE FORM 
-   * ====================================================
-   * 
-   * The input.search-bar value is set to state.search (an empty string) by default.  
-   * 
-   * When the user types in the search-bar, onChange is triggered and runs updateSearch
-   * updateSearch sets the new value in search-bar to state.search using setSearch.
-   * 
-   * When the form is submitted, getSearch is triggered and runs getSearch.
-   * getSearch stops the page from re-rendering from the submit event.
-   * state.search is set to state.query using setQuery.
-   * state.query is used in the API call when fetching data.
-   */
 
   return (
     <div className='App'>
@@ -75,6 +57,8 @@ const App = () => {
           title={recipe.recipe.label}
           calories={recipe.recipe.calories}
           image={recipe.recipe.image}
+          // Adding ingredients to output... Had trouble with this earlier, learning how to do it now.
+          ingredients={recipe.recipe.ingredients}
         />
       ))}
     </div>
