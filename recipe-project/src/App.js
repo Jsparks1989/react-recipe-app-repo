@@ -74,6 +74,8 @@ export default App;
 /**
  * NOTES FOR EXPANSION:
  * ====================
+ * Branch off when adding these expansions!!
+ * =========================================
  * 
  * 1. Add modal windows for each recipe. When user clicks on individual recipe, a modal window of that recipe will open.
  * 
