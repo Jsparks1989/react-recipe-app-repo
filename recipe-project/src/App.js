@@ -68,3 +68,37 @@ const App = () => {
 }
 
 export default App;
+
+
+
+/**
+ * NOTES FOR EXPANSION:
+ * ====================
+ * 
+ * 1. Add modal windows for each recipe. When user clicks on individual recipe, a modal window of that recipe will open.
+ * 
+ * 2. Add rows of only two recipes at a time.
+ * 
+ * /
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
