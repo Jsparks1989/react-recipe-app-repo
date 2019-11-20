@@ -23,3 +23,15 @@ const Recipe = ({title, calories, image, ingredients}) => {
 }
 
 export default Recipe;
+
+
+
+/**
+ * 
+ * Adding the modal window to this component possibly? 
+ * This is where I will start. 
+ * 
+ * 
+ * 
+ * 
+ * /
